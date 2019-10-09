@@ -75,6 +75,7 @@ module.exports = function(tilelive, options) {
 
         switch (rsp.statusCode) {
         case 200:
+        case 204:
         case 403:
         case 404:
           return callback(null, rsp, body);
@@ -171,6 +172,7 @@ module.exports = function(tilelive, options) {
       }
 
       switch (rsp.statusCode) {
+      case 204: // no content
       case 200:
         var rspHeaders = ["age", "cache-control", "content-type", "content-md5", "content-encoding", "date", "expires"].reduce(function(obj, key) {
           if (rsp.headers[key]) {
